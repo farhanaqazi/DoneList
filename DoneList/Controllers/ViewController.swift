@@ -42,8 +42,10 @@ extension ViewController: FUIAuthDelegate {
       
             return
         }
+        //Category.userid = authDataResult?.user.uid
         
         performSegue(withIdentifier: "ProceedToMain", sender: self)
+        
     }
     
 }
