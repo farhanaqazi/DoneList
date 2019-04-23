@@ -6,11 +6,11 @@ Simple yet, extreemly handy application for iOS, The DONELIST is an app that fir
 
 # Implementation
 
-The app consists of 4 view constrollers. The ViewController.swift is for the login. CatagoryViewController....
+The app consists of 4 view constrollers. The ViewController.swift is for the login. CatagoryViewController saves the model to Realm and retrieves and updates the model, updates the tableview etc. ToDoListViewController activates and recives action from a search bar, to record the Items created under each catagory of the tableviewcontroller. SwipeTableViewController implements the swipecellkit to enhance the functioning of the swipe action by the user under each catagory and items.
 
 # How to build
 
-Describe the necessary steps to build your app
+This app utilized Firebase login to record the user data on the server side and then after access is granted, user is allowed to enter into their personal checklist. The user can add the catagories and items under each catagories and mark it with a check sign once completed.
 
 # Requirements
 
@@ -18,9 +18,7 @@ Xcode 9.2
 Swift 4.0
 .....
 
-# License
 
-Optionally choose a license for your code
 
 
 
