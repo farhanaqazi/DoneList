@@ -15,6 +15,6 @@ import FirebaseCore
 class Category: Object {
     @objc dynamic var name: String = ""
     @objc dynamic var colour: String = ""
- //   @objc dynamic var userid: String = "" // authDataResult?.user.uid <- could not be used. Errored out
+    @objc dynamic var userid: String = "" // Step 1
     let items = List<Item>()
 }

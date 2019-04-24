@@ -11,7 +11,7 @@ import UIKit
 import RealmSwift
 import ChameleonFramework
 
-
+let activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView();
 
 class CategoryViewController: SwipeTableViewController {
   
@@ -71,13 +71,32 @@ class CategoryViewController: SwipeTableViewController {
         }
     }
 
+//Step 3: Updated the CategoriesLoader function as below. Please note that we have filetered data based on the logged in userId.
+
     func CategoriesLoader() {
+        guard let uid = Auth.auth().currentUser?.uid else{
+            // Since uid is nil, this means that User is not logged in.
+            // Show an error and redirect the user on login page.
+            return
+        }
         
-        categories  = realm.objects(Category.self)
+        let allcategories  = realm.objects(Category.self)
+        categories = allcategories.filter(NSPredicate(format: "userId = %@", uid))
         
         tableView.reloadData()
         
     }
+
+    
+    
+    
+//    func CategoriesLoader() {
+//
+//        categories  = realm.objects(Category.self)
+//
+//        tableView.reloadData()
+//
+//    }
 
     
     func saveToRealm(category: Category) {
@@ -110,9 +129,30 @@ class CategoryViewController: SwipeTableViewController {
     
     
 
-    
+ //Step 4: Added code to save the userId. The updated addButtonPressed as follow:
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
-        
+
+        // SHOWING Activity Indicator while saving Category
+//        self.startLoading()
+///**************************OLD
+//        var textField = UITextField()
+//
+//        let alert = UIAlertController(title: "Add New Category", message: "", preferredStyle: .alert)
+//
+//        let action = UIAlertAction(title: "Add", style: .default) { (action) in
+//
+//            let newCategory = Category()
+//            newCategory.name = textField.text!
+//            newCategory.colour = UIColor.randomFlat().hexValue()
+//
+//            self.saveToRealm(category: newCategory)
+////********************OLD
+        // Fetching the UserId of Logged In User.
+        guard let uid = Auth.auth().currentUser?.uid else{
+            // Since uid is nil, this means that User is not logged in.
+            // Show an error and redirect the user on login page.
+            return
+        }
         var textField = UITextField()
         
         let alert = UIAlertController(title: "Add New Category", message: "", preferredStyle: .alert)
@@ -122,8 +162,23 @@ class CategoryViewController: SwipeTableViewController {
             let newCategory = Category()
             newCategory.name = textField.text!
             newCategory.colour = UIColor.randomFlat().hexValue()
-            
+            // Adding userId to Category.
+            newCategory.userId = uid
             self.saveToRealm(category: newCategory)
+            
+        }
+        
+        alert.addAction(action)
+        
+        alert.addTextField { (field) in
+            textField = field
+            textField.placeholder = "Add a new category"
+        }
+        
+        present(alert, animated: true, completion: nil)
+        
+        //STOP SHOWING Activity Indicator after saving
+//          self.stopLoading()
             
         }
         
@@ -138,5 +193,29 @@ class CategoryViewController: SwipeTableViewController {
         
     }
     
-}
+
+    
+    // FOR LOADING ACT IND
+//    func startLoading(){
+//        activityIndicator.center = self.view.center;
+//        activityIndicator.hidesWhenStopped = true;
+//        activityIndicator.style = UIActivityIndicatorView.Style.gray;
+//        view.addSubview(activityIndicator);
+//
+//        activityIndicator.startAnimating();
+//        UIApplication.shared.beginIgnoringInteractionEvents();
+//
+//    }
+
+    
+//    // FOR STOP LOADING ACT IND
+//    func stopLoading(){
+//
+//        activityIndicator.stopAnimating();
+//        UIApplication.shared.endIgnoringInteractionEvents();
+//
+//    }
+    
+    
+
 
