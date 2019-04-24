@@ -14,7 +14,7 @@ import ChameleonFramework
 
 
 class CategoryViewController: SwipeTableViewController {
-    
+  
     let realm = try! Realm()
     
     var categories: Results<Category>?

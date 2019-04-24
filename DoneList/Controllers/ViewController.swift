@@ -1,5 +1,5 @@
 //
-//  LoginViewController..swift
+//  ViewController..swift
 //  DoneList
 //
 //  Created by Farhan Qazi on 4/15/19.
@@ -8,7 +8,12 @@
 import UIKit
 import FirebaseUI
 
+
+
 class ViewController: UIViewController {
+    let catagory = Category()
+    static var userid: String = ""
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,10 +44,18 @@ extension ViewController: FUIAuthDelegate {
         guard error == nil else {
             
             print("Error found,\(error!)")
+            
+            let alertController = UIAlertController(title: "Try Agin...", message:
+                "Error finding an Account!", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "Dismiss", style: .default))
+            
+            self.present(alertController, animated: true, completion: nil)
       
             return
         }
-        //Category.userid = authDataResult?.user.uid
+
+       // catagory.userid = AuthDataResult.user.uid
+        
         
         performSegue(withIdentifier: "ProceedToMain", sender: self)
         
