@@ -202,6 +202,7 @@ PODS:
   - SDWebImage (4.4.6):
     - SDWebImage/Core (= 4.4.6)
   - SDWebImage/Core (4.4.6)
+  - SVProgressHUD (2.2.5)
   - SwipeCellKit (2.6.0)
   - TwitterCore (3.2.0)
   - TwitterKit (3.4.2):
@@ -224,6 +225,7 @@ DEPENDENCIES:
   - FirebaseUI/Google
   - GoogleSignIn
   - RealmSwift
+  - SVProgressHUD
   - SwipeCellKit
 
 SPEC REPOS:
@@ -259,6 +261,7 @@ SPEC REPOS:
     - Realm
     - RealmSwift
     - SDWebImage
+    - SVProgressHUD
     - SwipeCellKit
     - TwitterCore
     - TwitterKit
@@ -295,10 +298,11 @@ SPEC CHECKSUMS:
   Realm: e12c9c2387d05c5bba3a9c394838f5870e85763b
   RealmSwift: a82eab9b04c3e1616082c7e17aa300740847769c
   SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwipeCellKit: 935ca28c187ec6e1ffb2b578cf8ddca842bfdcbb
   TwitterCore: 8cbc9ad34d91c63a0035ea05bfbfc0d7ca72a28c
   TwitterKit: 5e4f41d70b9abdb41df5467f52d7aa2c0fd26ebb
 
-PODFILE CHECKSUM: b71f12a8c3f7f3f7e76a5cbca433f9f8cb79dbd0
+PODFILE CHECKSUM: de5441a069d4a15f2a7d1ec01397320370a65132
 
 COCOAPODS: 1.6.1

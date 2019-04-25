@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             migrationBlock: { migration, oldSchemaVersion in
                 if (oldSchemaVersion < 1) {
                     migration.enumerateObjects(ofType: Category.className()) { oldObject, newObject in
-                        newObject!["userId"] = ""
+                        newObject!["userid"] = ""
                     }
                 }
         })

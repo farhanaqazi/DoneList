@@ -22,5 +22,6 @@ pod 'FirebaseUI/Google'
 pod 'ChameleonFramework/Swift'
 pod 'ChameleonFramework'
 pod 'SwipeCellKit'
+pod 'SVProgressHUD'
 
 end

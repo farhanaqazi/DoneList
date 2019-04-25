@@ -7,6 +7,7 @@
 //
 import UIKit
 import FirebaseUI
+import SVProgressHUD
 
 
 
@@ -43,7 +44,7 @@ extension ViewController: FUIAuthDelegate {
 
         guard error == nil else {
             
-            print("Error found,\(error!)")
+            print(error!)
             
             let alertController = UIAlertController(title: "Try Agin...", message:
                 "Error finding an Account!", preferredStyle: .alert)

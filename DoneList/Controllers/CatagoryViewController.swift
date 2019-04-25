@@ -10,11 +10,16 @@ import Foundation
 import UIKit
 import RealmSwift
 import ChameleonFramework
+import SVProgressHUD
+import FirebaseAuth
 
-let activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView();
+
+//let activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView();
 
 class CategoryViewController: SwipeTableViewController {
-  
+    
+var handle: AuthStateDidChangeListenerHandle?
+    
     let realm = try! Realm()
     
     var categories: Results<Category>?
@@ -59,9 +64,7 @@ class CategoryViewController: SwipeTableViewController {
     
 
     
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        performSegue(withIdentifier: "goToItems", sender: self)
-//    }
+
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC = segue.destination as! TodoListViewController
@@ -81,7 +84,7 @@ class CategoryViewController: SwipeTableViewController {
         }
         
         let allcategories  = realm.objects(Category.self)
-        categories = allcategories.filter(NSPredicate(format: "userId = %@", uid))
+        categories = allcategories.filter(NSPredicate(format: "userid = %@", uid))
         
         tableView.reloadData()
         
@@ -133,7 +136,10 @@ class CategoryViewController: SwipeTableViewController {
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
 
         // SHOWING Activity Indicator while saving Category
-//        self.startLoading()
+
+        //        self.startLoading()
+        SVProgressHUD.show()
+        
 ///**************************OLD
 //        var textField = UITextField()
 //
@@ -147,6 +153,7 @@ class CategoryViewController: SwipeTableViewController {
 //
 //            self.saveToRealm(category: newCategory)
 ////********************OLD
+        
         // Fetching the UserId of Logged In User.
         guard let uid = Auth.auth().currentUser?.uid else{
             // Since uid is nil, this means that User is not logged in.
@@ -163,7 +170,7 @@ class CategoryViewController: SwipeTableViewController {
             newCategory.name = textField.text!
             newCategory.colour = UIColor.randomFlat().hexValue()
             // Adding userId to Category.
-            newCategory.userId = uid
+            newCategory.userid = uid
             self.saveToRealm(category: newCategory)
             
         }
@@ -179,18 +186,38 @@ class CategoryViewController: SwipeTableViewController {
         
         //STOP SHOWING Activity Indicator after saving
 //          self.stopLoading()
+        SVProgressHUD.dismiss()
+        
             
         }
-        
-        alert.addAction(action)
-        
-        alert.addTextField { (field) in
-            textField = field
-            textField.placeholder = "Add a new category"
-        }
-        
-        present(alert, animated: true, completion: nil)
-        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+//*************** NOT TO BE USED*****************************************
+//        alert.addAction(action)
+//
+//        alert.addTextField { (field) in
+//            textField = field
+//            textField.placeholder = "Add a new category"
+//        }
+//
+//        present(alert, animated: true, completion: nil)
+    
     }
     
 
@@ -215,6 +242,7 @@ class CategoryViewController: SwipeTableViewController {
 //        UIApplication.shared.endIgnoringInteractionEvents();
 //
 //    }
+///*************** NOT TO BE USED*****************************************
     
     
 
