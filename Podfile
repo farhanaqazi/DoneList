@@ -23,5 +23,6 @@ pod 'ChameleonFramework/Swift'
 pod 'ChameleonFramework'
 pod 'SwipeCellKit'
 pod 'SVProgressHUD'
+pod 'Firebase/Database'
 
 end

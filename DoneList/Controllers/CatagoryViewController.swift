@@ -12,6 +12,8 @@ import RealmSwift
 import ChameleonFramework
 import SVProgressHUD
 import FirebaseAuth
+import FirebaseDatabase
+
 
 
 //let activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView();
@@ -106,10 +108,24 @@ var handle: AuthStateDidChangeListenerHandle?
         do {
             try realm.write {
                 realm.add(category)
+     
+                
             }
         } catch {
             print("Error found while saving category \(error)")
         }
+        
+        /// Code to Save catagory to firebase
+        let catagoryDB = Database.database().reference().child("catagory")
+        let catagoryDictionary = [
+            "name": category.name, "colour": category.colour, "userid": Auth.auth().currentUser?.uid ]
+        catagoryDB.childByAutoId().setValue(catagoryDictionary){
+            (error,reference) in
+            if error != nil { print( error!)} else {
+                print(" Saved to Firebase")
+            }
+        }
+        ///////////////////////////////////////////////////////////
         
         tableView.reloadData()
         

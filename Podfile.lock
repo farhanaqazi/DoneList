@@ -213,6 +213,7 @@ DEPENDENCIES:
   - ChameleonFramework/Swift
   - Firebase/Auth
   - Firebase/Core
+  - Firebase/Database
   - FirebaseAuth
   - FirebaseCore
   - FirebaseDatabase
@@ -303,6 +304,6 @@ SPEC CHECKSUMS:
   TwitterCore: 8cbc9ad34d91c63a0035ea05bfbfc0d7ca72a28c
   TwitterKit: 5e4f41d70b9abdb41df5467f52d7aa2c0fd26ebb
 
-PODFILE CHECKSUM: de5441a069d4a15f2a7d1ec01397320370a65132
+PODFILE CHECKSUM: 26fd67587ec430aba6cf1fc58df4efe4c8715949
 
 COCOAPODS: 1.6.1

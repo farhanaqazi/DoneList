@@ -9,6 +9,8 @@ import Foundation
 import UIKit
 import RealmSwift
 import ChameleonFramework
+import Firebase
+import FirebaseDatabase
 
 class TodoListViewController: SwipeTableViewController {
     
@@ -130,11 +132,38 @@ class TodoListViewController: SwipeTableViewController {
                         newItem.title = textField.text!
                         newItem.dateCreated = Date()
                         currentCategory.items.append(newItem)
+                        /// Code to save newItem to fire to be inserte here
+                        let newItemDB = Database.database().reference().child("newItem")
+                        let newItemDictionary = [
+                            "title" : newItem.title, "done": newItem.done
+                            
+                            ] as [String : Any]
+                        newItemDB.childByAutoId().setValue(newItemDictionary ) {
+                            (error,reference) in
+                            if error != nil {
+                                print (error!)
+                            }else
+                            {
+                                print("Saved to Firebase")
+                            }
+                            
+                        }
+ 
                     }
                 } catch {
                     print("Sorry! Error in Saving, \(error)")
                 }
             }
+            
+          
+            
+            
+            
+            
+            
+            
+            
+            /////
             
             self.tableView.reloadData()
             
