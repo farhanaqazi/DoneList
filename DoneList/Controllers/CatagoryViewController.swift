@@ -206,44 +206,13 @@ var handle: AuthStateDidChangeListenerHandle?
     
     
     
-    
-    
-//*************** NOT TO BE USED*****************************************
-//        alert.addAction(action)
-//
-//        alert.addTextField { (field) in
-//            textField = field
-//            textField.placeholder = "Add a new category"
-//        }
-//
-//        present(alert, animated: true, completion: nil)
+   
     
     }
     
 
     
-    // FOR LOADING ACT IND
-//    func startLoading(){
-//        activityIndicator.center = self.view.center;
-//        activityIndicator.hidesWhenStopped = true;
-//        activityIndicator.style = UIActivityIndicatorView.Style.gray;
-//        view.addSubview(activityIndicator);
-//
-//        activityIndicator.startAnimating();
-//        UIApplication.shared.beginIgnoringInteractionEvents();
-//
-//    }
 
-    
-//    // FOR STOP LOADING ACT IND
-//    func stopLoading(){
-//
-//        activityIndicator.stopAnimating();
-//        UIApplication.shared.endIgnoringInteractionEvents();
-//
-//    }
-///*************** NOT TO BE USED*****************************************
-    
     
 
 
