@@ -13,6 +13,7 @@ import Firebase
 import FirebaseDatabase
 
 class TodoListViewController: SwipeTableViewController {
+    var itemArray : [Item] = [Item]()
     
     var toBeDoneItems: Results<Item>?
     let realm = try! Realm()
@@ -27,7 +28,7 @@ class TodoListViewController: SwipeTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        reloadItemfromFirebase()
         tableView.separatorStyle = .none
         
     }
@@ -230,4 +231,35 @@ extension TodoListViewController: UISearchBarDelegate {
             
         }
     }
+    
+    func reloadItemfromFirebase(){
+   let newItemDB = Database.database().reference().child("items")
+        newItemDB.observe(.childAdded){(snapshot) in
+            
+            let snapshotValue = snapshot.value as! Dictionary<String,Bool>
+            let title = snapshotValue["title"]!
+            let done = snapshotValue["done"]!
+            
+            let items = Item()
+            items.done = done
+            items.title = (title as AnyObject) as! String
+            
+            
+            self.itemArray.append(items)
+            
+            
+            
+            
+            
+        }
+        
+    
+    
+    
+    
+    
+    }
+    
+    
+    
 }
