@@ -19,6 +19,8 @@ import FirebaseDatabase
 //let activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView();
 
 class CategoryViewController: SwipeTableViewController {
+
+    var categoryArray : [Category] = [Category]()
     
 var handle: AuthStateDidChangeListenerHandle?
     
@@ -30,7 +32,7 @@ var handle: AuthStateDidChangeListenerHandle?
         super.viewDidLoad()
         
         CategoriesLoader()
-        
+        reloadCatagoryfromFirebase()
         tableView.separatorStyle = .none
         
     }
@@ -207,23 +209,31 @@ var handle: AuthStateDidChangeListenerHandle?
             
         }
     
+    func reloadCatagoryfromFirebase(){
+    
+        
+        let catagoryDB = Database.database().reference().child("catagory")
+        
+        catagoryDB.observe(.childAdded) {(snapshot) in
+            
+            let snapshotValue = snapshot.value as! Dictionary<String, String>
+            let name = snapshotValue["name"]!
+            let colour = snapshotValue["colour"]!
+            let userid = snapshotValue["userid"]!
+            
+            let catagory = Category()
+            catagory.name = name
+            catagory.colour = colour
+            catagory.userid = userid
+            
+           self.categoryArray.append(catagory)
+        }
     
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-   
-    
+    }
+
     }
     
 
